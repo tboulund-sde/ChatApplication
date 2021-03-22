@@ -2,7 +2,6 @@ package bll;
 
 import be.Message;
 import dal.ChatDataContext;
-import dal.IMessageRepository;
 import dal.XMLMessageRepository;
 
 public class MechaChatLogicFacade implements IMechaChatLogicFacade {
