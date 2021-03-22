@@ -21,4 +21,8 @@ public class ChatDataContext {
     public int getNextId() {
         return repositoryStrategy.getNextId();
     }
+
+    public Message[] getAllMessages() {
+        return repositoryStrategy.getMessages();
+    }
 }

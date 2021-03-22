@@ -23,6 +23,8 @@ public class Controller {
 
     @FXML
     public void initialize() {
+        messages.setAll(chatFacade.loadMessages());
+
         lstMessages.setItems(messages);
         lstMessages.setCellFactory(param -> new ListCell<>() {
             @Override

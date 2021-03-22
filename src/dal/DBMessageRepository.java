@@ -3,6 +3,7 @@ package dal;
 import be.Message;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBMessageRepository implements IMessageRepository {
     private Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -38,5 +39,28 @@ public class DBMessageRepository implements IMessageRepository {
             ex.printStackTrace();
         }
         return 1;
+    }
+
+    @Override
+    public Message[] getMessages() {
+        try {
+            Connection con = getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT Id, Text FROM Message");
+
+            ArrayList<Message> messages = new ArrayList<>();
+            while(rs.next()) {
+                Message msg = new Message();
+                msg.setId(rs.getInt("Id"));
+                msg.setMessage(rs.getString("Text"));
+                messages.add(msg);
+            }
+            return messages.toArray(new Message[0]);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return new Message[0];
     }
 }

@@ -42,6 +42,11 @@ public class XMLMessageRepository implements IMessageRepository {
         }
     }
 
+    @Override
+    public Message[] getMessages() {
+        return load().getMessages();
+    }
+
     private MessageList load() {
         try {
             JAXBContext jc = JAXBContext.newInstance(MessageList.class);
